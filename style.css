@@ -1,0 +1,1063 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --navy:        #0B1A2E;
+  --navy-light:  #122240;
+  --navy-mid:    #1A3358;
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --gold-pale:   #F5E6BE;
+  --cream:       #F7F2E8;
+  --red:         #B33A3A;
+  --red-light:   #E05555;
+  --green:       #2A6B4A;
+  --green-light: #3A9B6A;
+  --text-muted:  #8A96A8;
+  --border:      rgba(201, 168, 76, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+body {
+  background: #060E1A;
+  font-family: 'Lato', sans-serif;
+  color: var(--cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Fine-line pattern background grid texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent, transparent 40px,
+      rgba(201, 168, 76, 0.015) 40px,
+      rgba(201, 168, 76, 0.015) 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent, transparent 40px,
+      rgba(201, 168, 76, 0.015) 40px,
+      rgba(201, 168, 76, 0.015) 41px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* Layout*/
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+
+/* header */
+
+.app-header {
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(6, 14, 26, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-seal {
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--gold);
+}
+
+.brand-text .name {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  color: var(--gold-light);
+  line-height: 1;
+}
+
+.brand-text .sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.header-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-align: right;
+  line-height: 1.8;
+}
+
+
+/* CONTINUE / SAVED PROGRESS BANNER */
+
+.continue-banner {
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.04));
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  animation: slideDown 0.4s ease;
+}
+
+.continue-banner.hidden {
+  display: none;
+}
+
+.banner-msg {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.banner-msg strong {
+  color: var(--gold-light);
+}
+
+.banner-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.banner-btn {
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.banner-btn.yes {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.banner-btn.yes:hover {
+  background: var(--gold-light);
+}
+
+.banner-btn.no {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-muted);
+}
+
+.banner-btn.no:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--cream);
+}
+
+
+/* PASSPORT STAMP PROGRESS */
+
+.progress-section {
+  margin-bottom: 48px;
+}
+
+.progress-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 4px;
+}
+
+.stamp-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.stamp {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 2px dashed;
+}
+
+.stamp:hover {
+  transform: scale(1.06) rotate(-2deg);
+}
+
+/* Inner dashed ring detail */
+.stamp::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px dashed currentColor;
+  opacity: 0.4;
+}
+
+.stamp.completed {
+  background: rgba(42, 107, 74, 0.15);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.stamp.active {
+  background: rgba(201, 168, 76, 0.12);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
+}
+
+.stamp.inactive {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.stamp-icon {
+  font-size: 20px;
+}
+
+.stamp-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 64px;
+  line-height: 1.3;
+}
+
+.stamp.active  .stamp-label { color: var(--gold); }
+.stamp.completed .stamp-label { color: var(--green); }
+
+/* Green tick badge on completed stamps */
+.stamp-check {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  background: var(--green);
+  border-radius: 50%;
+  border: 2px solid #060E1A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: white;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stamp.completed .stamp-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Connecting lines between stamps */
+.stamp-connector {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.3), rgba(201, 168, 76, 0.08));
+  min-width: 8px;
+  margin-top: -20px;
+}
+
+.stamp-connector.done {
+  background: linear-gradient(90deg, var(--green), rgba(42, 107, 74, 0.3));
+}
+
+/* Progress bar underneath stamps */
+.progress-bar-wrap {
+  margin-top: 4px;
+}
+
+.progress-bar {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 99px;
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+/* Glowing dot at the progress head */
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--gold);
+}
+
+.progress-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+
+/* FORM CARD */
+
+.form-card {
+  background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlideIn 0.4s ease;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Subtle inner border detail */
+.form-card::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(201, 168, 76, 0.06);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+/* Large watermark step number */
+.form-card-bg-num {
+  position: absolute;
+  bottom: -30px;
+  right: -10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 180px;
+  color: rgba(255, 255, 255, 0.02);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.form-card.going-back {
+  animation: fadeSlideBack 0.4s ease;
+}
+
+/* Step header text */
+.card-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 30px);
+  color: var(--gold-light);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.card-desc {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+
+/* FORM FIELDS */
+
+.field-group {
+  margin-bottom: 20px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.required-mark {
+  color: var(--red-light);
+  font-size: 12px;
+}
+
+.field-input,
+.field-select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--cream);
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.field-input:focus,
+.field-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+}
+
+.field-input.has-error,
+.field-select.has-error {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(179, 58, 58, 0.1);
+}
+
+.field-error {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--red-light);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Custom select arrow */
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  content: '▾';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  pointer-events: none;
+  font-size: 12px;
+}
+
+.field-select option {
+  background: var(--navy);
+  color: var(--cream);
+}
+
+
+/* DOCUMENT UPLOAD ZONE */
+
+.upload-zone {
+  border: 2px dashed rgba(201, 168, 76, 0.25);
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+  background: rgba(201, 168, 76, 0.02);
+  transition: all 0.25s;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.upload-zone:hover,
+.upload-zone.dragging {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.upload-zone.uploaded {
+  border-color: var(--green);
+  background: rgba(42, 107, 74, 0.06);
+}
+
+.upload-zone.has-error {
+  border-color: var(--red);
+  background: rgba(179, 58, 58, 0.04);
+}
+
+.upload-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.upload-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.upload-label strong {
+  color: var(--gold);
+}
+
+.upload-zone.uploaded .upload-label {
+  color: var(--green);
+}
+
+/* "✓ Uploaded" pill badge */
+.upload-status {
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  background: var(--green);
+  color: white;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+
+.upload-file-name {
+  margin-top: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--green-light);
+  letter-spacing: 1px;
+}
+
+/* Hide native file inputs (custom zones trigger them) */
+input[type="file"] {
+  display: none;
+}
+
+
+/* review step page*/
+
+.review-section {
+  margin-bottom: 24px;
+}
+
+.review-section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-edit-btn {
+  background: none;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  color: var(--gold);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.review-edit-btn:hover {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: var(--gold);
+}
+
+.review-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 13px;
+  gap: 12px;
+}
+
+.review-row:last-child {
+  border-bottom: none;
+}
+
+.review-key  { color: var(--text-muted); flex-shrink: 0; }
+.review-val  { color: var(--cream); text-align: right; }
+.review-val.gold  { color: var(--gold-light); }
+.review-val.green { color: var(--green-light); }
+
+.cert-divider {
+  border: none;
+  border-top: 1px dashed rgba(201, 168, 76, 0.15);
+  margin: 20px 0;
+}
+
+
+/* BUTTONS */
+
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  gap: 12px;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(201, 168, 76, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary.loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--cream);
+}
+
+
+/* SUCCESS page */
+
+.success-screen {
+  text-align: center;
+  animation: fadeSlideIn 0.5s ease;
+}
+
+.success-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--green-light);
+  text-transform: uppercase;
+  margin-bottom: 19px;
+}
+
+.success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 42px);
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.success-sub {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+
+/* VISA CERTIFICATE */
+
+#certificate-render {
+  background: var(--cream);
+  border: 3px solid var(--gold);
+  border-radius: 16px;
+  padding: 48px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Inner border detail */
+#certificate-render::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/*  grid lines */
+#certificate-render::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent, transparent 22px,
+      rgba(201, 168, 76, 0.07) 22px,
+      rgba(201, 168, 76, 0.07) 23px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent, transparent 22px,
+      rgba(201, 168, 76, 0.07) 22px,
+      rgba(201, 168, 76, 0.07) 23px
+    );
+  pointer-events: none;
+}
+
+.cert-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-22deg);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 10vw, 90px);
+  font-weight: 700;
+  color: rgba(42, 107, 74, 0.07);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 10px;
+}
+
+.cert-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.cert-seal {
+  width: 80px;
+  height: 80px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin: 0 auto 20px;
+  border: 4px solid white;
+  box-shadow: 0 8px 24px rgba(42, 107, 74, 0.35);
+}
+
+.cert-authority {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.cert-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 5vw, 40px);
+  color: var(--navy);
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+
+.cert-ref {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--green);
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+}
+
+.cert-certifies {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.cert-name {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: clamp(20px, 4vw, 30px);
+  color: var(--navy);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.4);
+  padding-bottom: 2px;
+  display: inline-block;
+  min-width: 240px;
+  margin-bottom: 24px;
+}
+
+.cert-details-grid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.cert-detail {
+  text-align: center;
+}
+
+.cert-detail-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cert-detail-value {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+}
+
+.cert-footer {
+  border-top: 1px dashed rgba(201, 168, 76, 0.3);
+  padding-top: 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* Download button */
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 12px;
+}
+
+.download-btn:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+}
+
+.download-btn.loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.size-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.new-app-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 24px;
+  border: 1px solid rgba(197, 47, 47, 0.15);
+  border-radius: 6px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.new-app-btn:hover {
+  border-color: rgba(138, 37, 37, 0.3);
+  color: var(--cream);
+}
+
+
+/* ============================================================
+   TOAST NOTIFICATION
+   ============================================================ */
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(179, 58, 58, 0.95);
+  border: 1px solid rgba(224, 85, 85, 0.4);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 14px;
+  z-index: 999;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+@keyframes fadeSlideBack {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+@keyframes stampIn {
+  0%   { transform: scale(2);   opacity: 0; }
+  60%  { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.stamp.just-stamped {
+  animation: stampIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .app-header  { padding: 16px 20px; }
+  .header-meta { display: none; }
+  .main        { padding: 32px 16px 60px; }
+  .stamp-label { display: none; }
+  .stamp       { width: 44px; height: 44px; }
+  .form-card   { padding: 24px 20px; }
+}
+
+@media (max-width: 500px) {
+  .stamp      { width: 48px; height: 48px; }
+  .stamp-icon { font-size: 16px !important; }
+  .field-row  { grid-template-columns: 1fr; }
+}

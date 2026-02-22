@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Visa Application</title>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&family=DM+Mono:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- PDF Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+ 
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!--TOAST NOTIFICATION-->
+  <div class="toast" id="toast"></div>
+
+  <div class="app-shell">
+
+    
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-seal">🌐</div>
+        <div class="brand-text">
+          <div class="name">Visa Services</div>
+          <div class="sub">Republic of Rico-Kay</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        TRAVEL AUTHORITY<br>
+        TYPE-C TOURIST VISA
+      </div>
+    </header>
+
+    <!-- saved progress -->
+    <div class="continue-banner hidden" id="continueBanner">
+      <div class="banner-msg">
+        🔖 <strong>Saved application found.</strong> Continue where you left off?
+      </div>
+      <div class="banner-btns">
+        <button class="banner-btn yes" onclick="loadSaved()">Continue</button>
+        <button class="banner-btn no" onclick="dismissBanner()">Start Fresh</button>
+      </div>
+    </div>
+
+   
+    <main class="main">
+
+      <!-- Progress Stamps -->
+      <div class="progress-section">
+        <div class="progress-track" id="stampTrack"></div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-text" id="progressText"></div>
+        </div>
+      </div>
+
+      <!-- Form Card -->
+      <div class="form-card" id="formCard">
+        <div id="stepContent"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- CERTIFICATE (off-screen clone used for PDF render)-->
+  <div id="certificate-render" style="display:none; position:fixed; left:-9999px; top:0; width:700px;">
+    <div class="cert-watermark">APPROVED</div>
+    <div class="cert-inner">
+      <div class="cert-seal">✅</div>
+      <div class="cert-authority">Republic of Rico-Kay · Visa Services Division</div>
+      <div class="cert-title">Visa Approved</div>
+      <div class="cert-ref" id="cert-ref-hidden"></div>
+      <div class="cert-certifies">This certifies that</div>
+      <div class="cert-name" id="cert-name-hidden"></div>
+      <div class="cert-details-grid">
+        <div class="cert-detail">
+          <span class="cert-detail-label">Passport No.</span>
+          <span class="cert-detail-value" id="cert-passport-hidden"></span>
+        </div>
+        <div class="cert-detail">
+          <span class="cert-detail-label">Destination</span>
+          <span class="cert-detail-value" id="cert-dest-hidden"></span>
+        </div>
+        <div class="cert-detail">
+          <span class="cert-detail-label">Visa Type</span>
+          <span class="cert-detail-value" id="cert-type-hidden">Type C — Tourist</span>
+        </div>
+        <div class="cert-detail">
+          <span class="cert-detail-label">Arrival</span>
+          <span class="cert-detail-value" id="cert-arrival-hidden"></span>
+        </div>
+        <div class="cert-detail">
+          <span class="cert-detail-label">Expires</span>
+          <span class="cert-detail-value" id="cert-expires-hidden"></span>
+        </div>
+      </div>
+      <div class="cert-footer">
+        Issued by the Republic of Rico-kay · Travel Authority<br>
+        This document is valid for single entry · Keep this certificate for your records
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+
+</body>
+</html>
