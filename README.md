@@ -4,7 +4,7 @@ A multi-step travel visa application form built as a Frontend Mentor challenge s
 
 ## Live Demo
 
-[View Live →]( https://travel-visa-application.vercel.app/ )
+[View Live →]https://travel-visa-application.vercel.app/ 
 
 ---
 
