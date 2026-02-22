@@ -10,7 +10,7 @@ A multi-step travel visa application form built as a Frontend Mentor challenge s
 
 ## Screenshot
 
-![Travel Visa Application — Step 1: Personal Information](./screenshot.png)
+![Travel Visa Application — Step 1: Personal Information](./step1.png)
 
 ---
 
