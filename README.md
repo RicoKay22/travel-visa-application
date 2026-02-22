@@ -4,13 +4,13 @@ A multi-step travel visa application form built as a Frontend Mentor challenge s
 
 ## Live Demo
 
-[View Live →](https://your-username.github.io/travel-visa-application)
+[View Live →]()
 
 ---
 
 ## Screenshot
 
-![Travel Visa Application Step 1: Personal Information](screenshot.png)
+![Travel Visa Application — Step 1: Personal Information](./screenshot.png)
 
 ---
 
@@ -57,7 +57,7 @@ travel-visa-application/
 No build tools or dependencies needed. Clone and open directly in a browser.
 
 ```bash
-git clone https://github.com/your-username/travel-visa-application.git
+git clone https://github.com/RicoKay22/travel-visa-application.git
 cd travel-visa-application
 open index.html
 ```
@@ -85,8 +85,8 @@ Or drag `index.html` into any browser.
 
 ## Author
 
-- **Your Name** — [@yourusername](https://github.com/yourusername)
-- Frontend Mentor Profile — [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- **Olumide Olayinka** — [@RicoKay22](https://github.com/RicoKay22)
+- Frontend Mentor Profile — [@RicoKay22](https://www.frontendmentor.io/profile/RicoKay22)
 
 ---
 
