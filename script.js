@@ -1,12 +1,6 @@
-/* ============================================================
-   TRAVEL VISA APPLICATION — script.js
-   Republic of Anywhere · Visa Services
-   ============================================================ */
 
 
-/* ============================================================
-   CONFIGURATION — Steps definition
-   ============================================================ */
+/* CONFIGURATION — Steps definition */
 
 const STEPS = [
   { id: 'personal', icon: '👤', label: 'Personal Info' },
@@ -21,9 +15,6 @@ const STORAGE_STEP = 'visa_app_step';
 const MAX_FILE     = 5 * 1024 * 1024; // 5MB
 
 
-/* ============================================================
-   STATE
-   ============================================================ */
 
 let currentStep = 0;
 
@@ -55,9 +46,7 @@ localStorage.setItem('visa_ref', appRef);
 const REPUBLIC_NAME = document.querySelector('.brand-text .sub')?.textContent?.trim() || 'Republic of Anywhere';
 
 
-/* ============================================================
-   UTILITY FUNCTIONS
-   ============================================================ */
+/* UTILITY FUNCTIONS */
 
 function generateRef() {
   const year = new Date().getFullYear();
@@ -91,9 +80,7 @@ function showToast(msg, duration = 3000) {
 }
 
 
-/* ============================================================
-   LOCAL STORAGE — Save & Load Progress
-   ============================================================ */
+/* LOCAL STORAGE, Save & Load Progress */
 
 function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
@@ -129,9 +116,7 @@ function checkSaved() {
 }
 
 
-/* ============================================================
-   PROGRESS — Stamp Track & Bar
-   ============================================================ */
+/*  PROGRESS — Stamp Track & Bar */
 
 function renderProgress() {
   const track = document.getElementById('stampTrack');
@@ -175,9 +160,7 @@ function renderProgress() {
 }
 
 
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
+/* progress navigation */
 
 function renderStep(back = false) {
   const card = document.getElementById('formCard');
@@ -232,9 +215,7 @@ function resetApp() {
 }
 
 
-/* ============================================================
-   STEP 1 — Personal Information
-   ============================================================ */
+/* STEP 1 — Personal Information */
 
 function step1() {
   document.getElementById('stepContent').innerHTML = `
@@ -342,9 +323,7 @@ function validateStep1() {
 }
 
 
-/* ============================================================
-   STEP 2 — Travel Details
-   ============================================================ */
+/* STEP 2 — Travel Details */
 
 function step2() {
   // Pre-calculate duration if both dates already exist (e.g. returning from review)
@@ -397,7 +376,7 @@ function step2() {
         <div class="field-error" id="e_purpose" style="display:none"></div>
       </div>
       <div class="field-group">
-        <div class="field-label">Duration (days) — auto-calculated</div>
+        <div class="field-label">Duration (days)</div>
         <input class="field-input" id="f_duration"
                value="${preCalcDuration ? preCalcDuration + ' days' : 'Select dates above…'}"
                readonly
@@ -502,9 +481,7 @@ function validateStep2() {
 }
 
 
-/* ============================================================
-   STEP 3 — Document Upload
-   ============================================================ */
+/* STEP 3 — Document Upload */
 
 function step3() {
   const pp = uploadedFiles.passport;
@@ -641,9 +618,7 @@ function validateStep3() {
 }
 
 
-/* ============================================================
-   STEP 4 — Review & Confirm
-   ============================================================ */
+/* STEP 4 — Review & Confirm */
 
 function step4() {
   document.getElementById('stepContent').innerHTML = `
@@ -721,9 +696,7 @@ function submitApplication() {
 }
 
 
-/* ============================================================
-   STEP 5 — Visa Approved + Certificate
-   ============================================================ */
+/* STEP 5 — Visa Approved + Certificate */
 
 function step5() {
   // Remove the card's dark background for the certificate screen
@@ -797,9 +770,7 @@ function step5() {
 }
 
 
-/* ============================================================
-   PDF DOWNLOAD — html2canvas + jsPDF, compressed to ≤ 5MB
-   ============================================================ */
+/* PDF DOWNLOAD — html2canvas + jsPDF, compressed to ≤ 5MB */
 
 async function downloadCertificate() {
   const btn = document.getElementById('dlBtn');
@@ -862,9 +833,7 @@ async function downloadCertificate() {
 }
 
 
-/* ============================================================
-   DATA — Nationality & Destination Lists
-   ============================================================ */
+/* DATA — Nationality & Destination Lists */
 
 function nationalities() {
   return [
@@ -900,8 +869,6 @@ function destinations() {
 }
 
 
-/* ============================================================
-   INIT
-   ============================================================ */
+/* INIT */
 
 checkSaved();
